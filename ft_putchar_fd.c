@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbreana <gbreana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/21 09:06:14 by gbreana           #+#    #+#             */
-/*   Updated: 2020/08/21 10:54:19 by gbreana          ###   ########.fr       */
+/*   Created: 2020/08/17 12:37:31 by gbreana           #+#    #+#             */
+/*   Updated: 2020/08/18 23:39:11 by gbreana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strdup(char *src)
+void	ft_putchar_fd(char c, int fd)
 {
-	size_t	src_size;
-	char	*dest;
-	char	*iter;
-
-	src_size = ft_strlen(src) + 1;
-	dest = malloc(src_size);
-	iter = dest;
-	if (dest == NULL)
-		return (NULL);
-	while (*src)
-	{
-		*iter = *src;
-		iter++;
-		src++;
-	}
-	*iter = 0;
-	return (dest);
+	write(1, &c, 1);
 }

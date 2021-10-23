@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbreana <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gbreana <gbreana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 03:39:28 by gbreana           #+#    #+#             */
 /*   Updated: 2020/08/16 03:57:58 by gbreana          ###   ########.fr       */

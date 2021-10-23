@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbreana <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gbreana <gbreana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 11:49:51 by gbreana           #+#    #+#             */
 /*   Updated: 2020/08/18 14:30:39 by gbreana          ###   ########.fr       */

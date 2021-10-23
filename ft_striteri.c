@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbreana <gbreana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,25 +9,10 @@
 /*   Updated: 2020/08/21 10:54:19 by gbreana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strdup(char *src)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	src_size;
-	char	*dest;
-	char	*iter;
 
-	src_size = ft_strlen(src) + 1;
-	dest = malloc(src_size);
-	iter = dest;
-	if (dest == NULL)
-		return (NULL);
-	while (*src)
-	{
-		*iter = *src;
-		iter++;
-		src++;
-	}
-	*iter = 0;
-	return (dest);
 }
