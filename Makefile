@@ -19,16 +19,19 @@ SRCS1		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c\
                 ft_strnstr.c ft_strdup.c ft_strlcat.c ft_strlcpy.c\
                 ft_tolower.c ft_toupper.c ft_strncmp.c
 SRCS2		=	ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
-				ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c\
-				ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
+				ft_itoa.c ft_strmapi.c ft_putstr_fd.c ft_putchar_fd.c\
+				ft_putendl_fd.c ft_putnbr_fd.c
+BONUS		=	ft_striteri.c
+OBJSI		=	$(patsubst %.o,%.d,$(INCL))
 OBJS1       =	$(patsubst %.c,%.o,$(SRCS1))
 OBJS2       =	$(patsubst %.c,%.o,$(SRCS2))
+OBJBN		=	$(patsubst %.c,%.o,$(BONUS))
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra
+FLAGS		=	-Wall -Werror -Wextra -MD
 RM			=	rm -rf
 .c.o:			$(CC) $(FLAGS) -I $(INCL) -c $< -o ${<:.c=.o}
 
-$(NAME):		$(OBJS1) $(OBJS2)
+$(NAME):		$(OBJS1) $(OBJS2) $(OBJSI)
 				ar rc $(NAME) $?
 				ranlib $(NAME)
 
