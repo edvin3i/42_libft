@@ -54,11 +54,11 @@ static char	*ft_word(char const *str, char c)
 	return (word);
 }
 
-static void ft_freemem(char *arr, int wrd_cnt)
+static void	ft_freemem(char *arr, int wrd_cnt)
 {
 	while (wrd_cnt)
 	{
-		free(arr[wrd_cnt - 1]);
+		free(&arr[wrd_cnt - 1]);
 		wrd_cnt--;
 	}
 }
@@ -77,15 +77,16 @@ static char	**ft_word_to_array(char **arr, const char *s, char c, int wrd_cnt)
 			arr[i] = ft_word(s, c);
 			if (!arr[i])
 			{
-				ft_freemem(arr, i);
+				ft_freemem(*arr, i);
+				free(arr);
 				return (NULL);
 			}
 			i++;
 			while (*s && *s != c)
 				s++;
-			arr[i] = NULL;
 		}
 	}
+	arr[i] = NULL;
 	return (arr);
 }
 

@@ -28,9 +28,11 @@
  * Structures
  */
 
-typedef struct s_map
+typedef struct	s_list
 {
-}				t_map;
+	void 			*content;
+	struct 	s_list	*next
+}				t_list;
 
 /*
  * Part 1 Functions
@@ -66,7 +68,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 char	*ft_substr(char const *str, unsigned int start, size_t len);
 char	*ft_strjoin(char const *str1, char const *str2);
-char	*ft_strtrim(char const *str1, char const *set);
+char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 char	**ft_split(char const *str, char c);
 char	*ft_strmapi(char const *str, char (*f)(unsigned int, char));
