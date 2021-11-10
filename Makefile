@@ -20,14 +20,15 @@ SRCS1		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c\
                 ft_tolower.c ft_toupper.c ft_strncmp.c
 SRCS2		=	ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
 				ft_itoa.c ft_strmapi.c ft_putstr_fd.c ft_putchar_fd.c\
-				ft_putendl_fd.c ft_putnbr_fd.c
-BONUS		=	ft_striteri.c
+				ft_striteri.c ft_putendl_fd.c ft_putnbr_fd.c
+BONUS		=	ft_lstnew.c ft_lstadd_front.c ft_lstadd_back.c ft_lstsize.c\
+ 				ft_lstlast.c ft_lstdelone.c ft_lstclear.c
 OBJSI		=	$(patsubst %.o,%.d,$(INCL))
 OBJS1       =	$(patsubst %.c,%.o,$(SRCS1))
 OBJS2       =	$(patsubst %.c,%.o,$(SRCS2))
 OBJBN		=	$(patsubst %.c,%.o,$(BONUS))
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra -MD
+FLAGS		=	-Wall -Werror -Wextra -O2 -MD
 RM			=	rm -rf
 .c.o:			$(CC) $(FLAGS) -I $(INCL) -c $< -o ${<:.c=.o}
 
@@ -37,10 +38,14 @@ $(NAME):		$(OBJS1) $(OBJS2) $(OBJSI)
 
 all:			$(NAME)
 
+bonus:			$(NAME) $(OBJBN)
+				ar rc $(NAME) $(OBJBN) $?
+				ranlib $(NAME) $(OBJBN)
+
 clean:
-				$(RM) $(OBJS1) $(OBJS2)
+				$(RM) $(OBJS1) $(OBJS2) $(OBJBN)
 
 fclean:			clean
-				$(RM) $(NAME)
+				$(RM) $(NAME) $(OBJBN)
 re:				fclean all
 .PHONY:		all clean fclean re
