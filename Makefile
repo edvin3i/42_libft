@@ -12,40 +12,40 @@
 
 NAME		=	libft.a
 INCL		=	libft.h
-SRCS1		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c\
+SRCS		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c\
                 ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c\
                 ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c\
                 ft_memset.c ft_strchr.c ft_strlen.c ft_strrchr.c\
                 ft_strnstr.c ft_strdup.c ft_strlcat.c ft_strlcpy.c\
-                ft_tolower.c ft_toupper.c ft_strncmp.c
-SRCS2		=	ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
+                ft_tolower.c ft_toupper.c ft_strncmp.c\
+				ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
 				ft_itoa.c ft_strmapi.c ft_putstr_fd.c ft_putchar_fd.c\
 				ft_striteri.c ft_putendl_fd.c ft_putnbr_fd.c
-BONUS		=	ft_lstnew.c ft_lstadd_front.c ft_lstadd_back.c ft_lstsize.c\
- 				ft_lstlast.c ft_lstdelone.c ft_lstclear.c
-OBJSI		=	$(patsubst %.o,%.d,$(INCL))
-OBJS1       =	$(patsubst %.c,%.o,$(SRCS1))
-OBJS2       =	$(patsubst %.c,%.o,$(SRCS2))
+BONUS		=	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstadd_back_bonus.c ft_lstsize_bonus.c\
+ 				ft_lstlast_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c\
+ 				ft_lstmap_bonus.c
+DEPI		=	$(patsubst %.o,%.d,$(INCL))
+OBJS		=	$(patsubst %.c,%.o,$(SRCS))
 OBJBN		=	$(patsubst %.c,%.o,$(BONUS))
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra -O2 -MD
+CFLAGS		=	-Wall -Werror -Wextra -MD
 RM			=	rm -rf
-.c.o:			$(CC) $(FLAGS) -I $(INCL) -c $< -o ${<:.c=.o}
+.c.o:			$(CC) $(CFLAGS) -I $(INCL) -c $< -o ${<:.c=.o}
 
-$(NAME):		$(OBJS1) $(OBJS2) $(OBJSI)
-				ar rc $(NAME) $?
+$(NAME):		$(OBJS) $(DEPI)
+				ar rc $(NAME) $(OBJS) $?
 				ranlib $(NAME)
 
 all:			$(NAME)
 
-bonus:			$(NAME) $(OBJBN)
-				ar rc $(NAME) $(OBJBN) $?
-				ranlib $(NAME) $(OBJBN)
+bonus:			$(OBJS) $(OBJBN) $(DEPI)
+				ar rc $(NAME) $(OBJS) $(OBJBN) $?
+				ranlib $(NAME)
 
 clean:
-				$(RM) $(OBJS1) $(OBJS2) $(OBJBN)
+				$(RM) $(OBJS) $(OBJBN) *.d
 
 fclean:			clean
 				$(RM) $(NAME) $(OBJBN)
 re:				fclean all
-.PHONY:		all clean fclean re
+.PHONY:		all bonus clean fclean re

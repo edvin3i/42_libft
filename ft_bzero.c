@@ -16,6 +16,8 @@ void	ft_bzero(void *s, size_t n)
 {
 	char	*iter;
 
+	if (!s && !n)
+		return ;
 	iter = (char *)s;
 	while (n--)
 		*iter++ = 0x00;

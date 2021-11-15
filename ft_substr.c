@@ -20,11 +20,11 @@ char	*ft_substr(char const *str, unsigned int start, size_t len)
 
 	if (!str)
 		return (NULL);
+	if (start >= (unsigned int)ft_strlen(str) || start == len)
+		return (ft_strdup(""));
 	result = (char *)malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (NULL);
-	if (start >= ft_strlen(str) || start == len)
-		return ((char *)malloc(0));
 	res_iter = result;
 	end = start + len - 1;
 	while (start <= end)

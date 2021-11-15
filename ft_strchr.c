@@ -13,9 +13,9 @@
 
 char	*ft_strchr(const char *src, int c)
 {
-	unsigned char	chr_c;
+	char	chr_c;
 
-	chr_c = (unsigned char) c;
+	chr_c = (char) c;
 	while (*src != chr_c)
 	{
 		if (!*src)

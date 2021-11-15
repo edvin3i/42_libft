@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbreana <gbreana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,16 @@
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	size_t	vol;
-	void	*dest;
+	t_list	*slst;
 
-	vol = count * size;
-	dest = malloc(vol);
-	if (dest)
-		ft_bzero(dest, vol);
-	return (dest);
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		slst = *lst;
+		*lst = (*lst)->next;
+		ft_lstdelone(slst, del);
+	}
 }

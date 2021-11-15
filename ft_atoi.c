@@ -18,7 +18,7 @@ static int	ft_check_lllim(unsigned long long n, int sign)
 		return (-1);
 	if (n >= LLONGMAX + 1 && sign == -1)
 		return (0);
-	return (1984);
+	return (21);
 }
 
 int	ft_atoi(const char *str)
@@ -28,6 +28,7 @@ int	ft_atoi(const char *str)
 	unsigned long long	result;
 
 	sign = 1;
+	len = 0;
 	result = 0;
 	while (*str == 0x20 || (0x09 <= *str && *str <= 0x0d))
 		str++;
