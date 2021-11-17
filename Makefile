@@ -24,28 +24,35 @@ SRCS		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c\
 BONUS		=	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstadd_back_bonus.c ft_lstsize_bonus.c\
  				ft_lstlast_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c\
  				ft_lstmap_bonus.c
-DEPI		=	$(patsubst %.o,%.d,$(INCL))
 OBJS		=	$(patsubst %.c,%.o,$(SRCS))
 OBJBN		=	$(patsubst %.c,%.o,$(BONUS))
-CC			=	gcc
+DEPS		=	$(patsubst %.c,%.d,$(SRCS))
+DEPBN		=	$(patsubst %.c,%.d,$(BONUS))
+CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra -MD
 RM			=	rm -rf
-.c.o:			$(CC) $(CFLAGS) -I $(INCL) -c $< -o ${<:.c=.o}
 
-$(NAME):		$(OBJS) $(DEPI)
-				ar rc $(NAME) $(OBJS) $?
+override		OBJS_ALL ?= $(OBJS)
+override		DEP_ALL ?= $(DEPS)
+
+.c.o:
+				$(CC) $(CFLAGS) -I $(INCL) -c $< -o ${<:.c=.o}
+
+$(NAME):		$(OBJS_ALL) $(INCL)
+				ar rcs $(NAME) $(OBJS_ALL) $?
 				ranlib $(NAME)
 
 all:			$(NAME)
 
-bonus:			$(OBJS) $(OBJBN) $(DEPI)
-				ar rc $(NAME) $(OBJS) $(OBJBN) $?
-				ranlib $(NAME)
+bonus:
+				@make OBJS_ALL="$(OBJS) $(OBJBN)" DEP_ALL="$(DEPS) $(DEPBN)" all
 
 clean:
-				$(RM) $(OBJS) $(OBJBN) *.d
+				$(RM) $(OBJS) $(OBJBN) $(DEPS) $(DEPBN)
 
 fclean:			clean
 				$(RM) $(NAME) $(OBJBN)
+
 re:				fclean all
-.PHONY:		all bonus clean fclean re
+
+.PHONY:		all clean fclean re bonus
