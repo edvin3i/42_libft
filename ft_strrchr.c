@@ -13,8 +13,8 @@
 
 char	*ft_strrchr(const char *src, int c)
 {
-	char		*ch_pos;
-	const char	*end;
+	char			*ch_pos;
+	const char		*end;
 
 	ch_pos = 0;
 	end = src;
@@ -22,7 +22,7 @@ char	*ft_strrchr(const char *src, int c)
 		end++;
 	while (src <= end)
 	{
-		if (*src == c)
+		if (*src == (unsigned char)c)
 			ch_pos = (char *)src;
 		src++;
 	}

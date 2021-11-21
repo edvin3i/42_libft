@@ -12,16 +12,34 @@
 
 #include "libft.h"
 
+static char	*ft_chardup(const char *ch)
+{
+	char	*res;
+
+	res = (char *) malloc(sizeof (ch) + 1);
+	if (!res)
+		return (NULL);
+	res[0] = ch[0];
+	res[1] = '\0';
+	return (res);
+}
+
 char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
 	unsigned int	end;
 	char			*result;
 	char			*res_iter;
+	size_t			slen;
 
 	if (!str)
 		return (NULL);
-	if (start >= (unsigned int)ft_strlen(str) || start == len)
+	slen = (size_t)ft_strlen(str);
+	if (slen < len)
+		len = slen;
+	if ((start >= (unsigned int)slen) || !len)
 		return (ft_strdup(""));
+	if (len == 1)
+		return (ft_chardup(&str[start]));
 	result = (char *)malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (NULL);
